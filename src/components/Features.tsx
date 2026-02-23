@@ -1,9 +1,15 @@
-import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useMemo } from 'react';
+import { motion } from 'framer-motion';
 
 export default function Features() {
-    const { scrollYProgress } = useScroll();
-    const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+    // Prevent impure function calls during render
+    const itemEarnings = useMemo(() => {
+        // use a constant multiplier instead of Math.random to strictly satisfy the linter
+        return [1, 2, 3, 4, 5, 6].map(item => ({
+            id: item,
+            earn: 4 + (item * 2) % 10 // pseudo-random deterministic number
+        }));
+    }, []);
 
     return (
         <section className="py-24 bg-white">
@@ -67,8 +73,8 @@ export default function Features() {
                         </div>
 
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                            {[1, 2, 3, 4, 5, 6].map((item) => (
-                                <div key={item} className="bg-white rounded-lg p-3 shadow-md transform hover:scale-105 transition-transform duration-300">
+                            {itemEarnings.map((item) => (
+                                <div key={item.id} className="bg-white rounded-lg p-3 shadow-md transform hover:scale-105 transition-transform duration-300">
                                     <div className="aspect-square bg-gray-100 rounded-md mb-3 relative overflow-hidden flex items-center justify-center">
                                         <span className="text-gray-300 font-bold text-4xl shadow-inner">👟</span>
                                         {/* Heart icon */}
@@ -86,7 +92,7 @@ export default function Features() {
                                         </div>
                                         <div className="flex flex-col items-end">
                                             <div className="w-6 h-6 border border-gray-200 rounded flex items-center justify-center text-gray-400 text-xs font-bold">+</div>
-                                            <span className="text-[10px] text-gray-500 mt-1">Earn {Math.floor(Math.random() * 10 + 4)}%</span>
+                                            <span className="text-[10px] text-gray-500 mt-1">Earn {item.earn}%</span>
                                         </div>
                                     </div>
                                 </div>

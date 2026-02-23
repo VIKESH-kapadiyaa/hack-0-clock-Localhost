@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Globe, ChevronDown, Menu, X } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);

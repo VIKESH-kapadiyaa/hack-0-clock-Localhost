@@ -35,7 +35,7 @@ export default function GlobalChatbot() {
             // Calls Groq -> OpenRouter fallback service
             const botReply = await sendMessageToAI(apiMessages);
             setMessages(prev => [...prev, { role: 'assistant', content: botReply }]);
-        } catch (error) {
+        } catch {
             setMessages(prev => [...prev, { role: 'assistant', content: "Sorry, I ran into an error connecting to our systems. Please try again soon." }]);
         } finally {
             setIsLoading(false);
