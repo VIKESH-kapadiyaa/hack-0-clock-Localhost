@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const brands = [
     "Microsoft", "Shopify", "Adidas", "Ticketmaster", "L'Oréal", "Canva", "BuzzFeed", "HSBC", "Lenovo", "Walmart"
